@@ -14,7 +14,9 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b4f8c'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E%F0%9F%A9%BA%3C/text%3E%3C/svg%3E">
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -42,55 +44,92 @@
 :root{
     --primary:#0b4f8c;
     --primary-2:#0e74c9;
-    --bg:#f6f9fc;
+    --bg:#f3f7fb;
     --card:#ffffff;
     --text:#1f2d3d;
-    --muted:#667085;
-    --line:#dbe4ee;
-    --wa:#1faa59;
-    --wa-dark:#168a47;
-    --call:#0e74c9;
-    --call-dark:#0b4f8c;
-    --land:#6c5ce7;
-    --land-dark:#5444c9;
-    --map:#e8553d;
-    --map-dark:#c7432d;
+    --muted:#5b6778;
+    --line:#d5e0ec;
+    --page-1:#0b4f8c;
+    --page-2:#0e74c9;
+    --call:#0b66b3;
+    --call-dark:#08508f;
+    --land:#5547c8;
+    --land-dark:#4437a8;
+    --wa:#15803d;
+    --wa-dark:#116a32;
+    --map:#c2410c;
+    --map-dark:#9a3412;
+    --heading-font:'Cairo','IBM Plex Sans Arabic',sans-serif;
     --shadow:0 20px 50px rgba(0,0,0,.2);
 }
 
+/* الوضع الليلي: تلقائي حسب الجهاز، أو يدوي بالزرار */
 @media (prefers-color-scheme: dark){
-    :root{
-        --bg:#16212e;
-        --card:#1c2937;
-        --text:#e6edf5;
-        --muted:#9fb0c3;
-        --line:#2e3f52;
-        --primary:#7cc0ff;
-        --shadow:0 20px 50px rgba(0,0,0,.5);
+    :root:not([data-theme="light"]){
+        --bg:#142030;
+        --card:#1b2a3b;
+        --text:#e8eef6;
+        --muted:#a3b3c6;
+        --line:#2f4156;
+        --primary:#8cc8ff;
+        --page-1:#06213a;
+        --page-2:#0b3a66;
+        --shadow:0 20px 50px rgba(0,0,0,.55);
     }
-    body{ background:linear-gradient(135deg,#07243f,#0b3f6e) !important; }
-    .header{ background:linear-gradient(135deg,#0b4f8c,#0e74c9) !important; }
-    .info-box, .faq-item, .map-wrap{ background:var(--bg) !important; }
-    .info-title{ color:var(--primary) !important; }
+}
+:root[data-theme="dark"]{
+    --bg:#142030;
+    --card:#1b2a3b;
+    --text:#e8eef6;
+    --muted:#a3b3c6;
+    --line:#2f4156;
+    --primary:#8cc8ff;
+    --page-1:#06213a;
+    --page-2:#0b3a66;
+    --shadow:0 20px 50px rgba(0,0,0,.55);
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Cairo',sans-serif;
 }
 
 html{ scroll-behavior:smooth; }
 
 body{
-    background:linear-gradient(135deg,#0b4f8c,#0e74c9);
+    font-family:'IBM Plex Sans Arabic','Cairo',sans-serif;
+    font-size:17px;
+    line-height:1.75;
+    background:linear-gradient(135deg,var(--page-1),var(--page-2));
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:flex-start;
     padding:20px 20px 110px;
     color:var(--text);
+}
+
+h1,.section-title,.info-title,.btn,.status{
+    font-family:var(--heading-font);
+}
+
+.icon{
+    width:1.25em;
+    height:1.25em;
+    flex:none;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    vertical-align:-.2em;
+}
+
+:focus-visible{
+    outline:3px solid #ffbf47;
+    outline-offset:3px;
+    border-radius:8px;
 }
 
 .card{
@@ -100,51 +139,73 @@ body{
     border-radius:25px;
     overflow:hidden;
     box-shadow:var(--shadow);
-    animation:rise .6s ease both;
+    animation:rise .5s ease both;
 }
 
 @keyframes rise{
-    from{ opacity:0; transform:translateY(16px); }
+    from{ opacity:0; transform:translateY(14px); }
     to{ opacity:1; transform:none; }
 }
 
 .header{
+    position:relative;
     background:linear-gradient(135deg,#0b4f8c,#0e74c9);
     color:#fff;
     text-align:center;
-    padding:40px 25px 34px;
+    padding:46px 25px 34px;
 }
+
+.theme-toggle{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:0;
+    background:rgba(255,255,255,.18);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:background .2s;
+}
+
+.theme-toggle:hover{ background:rgba(255,255,255,.3); }
+.theme-toggle .icon{ width:24px; height:24px; }
 
 .doctor-icon{
     width:104px;
     height:104px;
-    margin:auto;
+    margin:0 auto 20px;
     border-radius:50%;
     background:#fff;
     color:#0b4f8c;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:52px;
-    margin-bottom:20px;
     box-shadow:0 0 0 6px rgba(255,255,255,.25), 0 10px 25px rgba(0,0,0,.25);
 }
 
+.doctor-icon .icon{ width:54px; height:54px; stroke-width:1.7; }
+
 h1{
-    font-size:34px;
+    font-size:32px;
     font-weight:800;
+    line-height:1.4;
     margin-bottom:10px;
 }
 
 .specialty{
-    font-size:22px;
-    font-weight:600;
+    font-size:21px;
+    font-weight:700;
 }
 
 .member{
     margin-top:10px;
-    opacity:.95;
-    line-height:1.8;
+    opacity:.97;
+    line-height:1.9;
 }
 
 .status{
@@ -152,77 +213,47 @@ h1{
     align-items:center;
     gap:8px;
     margin-top:18px;
-    padding:7px 18px;
+    padding:8px 18px;
     border-radius:999px;
-    background:rgba(255,255,255,.18);
+    background:rgba(255,255,255,.2);
     font-weight:700;
-    font-size:15px;
+    font-size:16px;
 }
 
 .status .dot{
-    width:10px;
-    height:10px;
+    width:11px;
+    height:11px;
     border-radius:50%;
-    background:#9aa5b1;
+    background:#c3ccd6;
 }
 
-.status.open .dot{
-    background:#35e07a;
-    box-shadow:0 0 0 0 rgba(53,224,122,.7);
-    animation:pulse 1.8s infinite;
-}
+.status.open .dot{ background:#35e07a; }
+.status.closed .dot{ background:#ff7b7b; }
 
-.status.closed .dot{ background:#ff6b6b; }
-
-@keyframes pulse{
-    70%{ box-shadow:0 0 0 9px rgba(53,224,122,0); }
-    100%{ box-shadow:0 0 0 0 rgba(53,224,122,0); }
-}
-
-.content{
-    padding:30px;
-}
-
-.top-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:25px;
-}
+.content{ padding:30px; }
 
 .info-box{
     background:var(--bg);
-    border-right:5px solid #0e74c9;
+    border-right:5px solid var(--primary-2);
     padding:18px;
     border-radius:12px;
     margin-bottom:15px;
-    line-height:1.9;
-    transition:transform .25s, box-shadow .25s;
-}
-
-.info-box:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(14,116,201,.12);
 }
 
 .info-title{
-    color:#0b4f8c;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--primary);
     font-weight:700;
+    font-size:18px;
     margin-bottom:8px;
-}
-
-.info-box a.num{
-    color:inherit;
-    font-weight:700;
-    font-size:19px;
-    text-decoration:none;
-    direction:ltr;
-    unicode-bidi:embed;
 }
 
 .row{
     display:flex;
     justify-content:space-between;
+    gap:12px;
     margin-bottom:8px;
 }
 
@@ -234,12 +265,50 @@ hr.sep{
     border-top:1px solid var(--line);
 }
 
+.num-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    min-height:48px;
+    padding:8px 18px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--text);
+    text-decoration:none;
+    font-weight:700;
+    font-size:20px;
+    direction:ltr;
+    transition:.2s;
+}
+
+.num-btn:hover{ border-color:var(--primary-2); transform:translateY(-1px); }
+.num-btn:active{ transform:scale(.98); }
+
 .map-wrap{
     background:var(--bg);
     border-radius:12px;
     padding:12px;
     margin-bottom:15px;
 }
+
+.map-placeholder{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    height:220px;
+    border-radius:10px;
+    text-align:center;
+    color:var(--muted);
+    background:
+        linear-gradient(135deg, rgba(14,116,201,.10), rgba(14,116,201,.03)),
+        repeating-linear-gradient(0deg, transparent 0 22px, var(--line) 22px 23px),
+        repeating-linear-gradient(90deg, transparent 0 22px, var(--line) 22px 23px);
+}
+
+.map-placeholder .icon{ width:40px; height:40px; color:var(--map); }
 
 .map-wrap iframe{
     width:100%;
@@ -250,9 +319,12 @@ hr.sep{
 }
 
 .section-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
     color:var(--primary);
     font-weight:800;
-    font-size:20px;
+    font-size:21px;
     margin:28px 0 14px;
 }
 
@@ -265,8 +337,9 @@ hr.sep{
 
 .faq-item summary{
     cursor:pointer;
-    padding:14px 18px;
-    font-weight:700;
+    min-height:52px;
+    padding:12px 18px;
+    font-weight:600;
     list-style:none;
     display:flex;
     justify-content:space-between;
@@ -278,7 +351,8 @@ hr.sep{
 
 .faq-item summary::after{
     content:"+";
-    font-size:22px;
+    font-size:24px;
+    line-height:1;
     color:var(--primary-2);
     transition:transform .25s;
 }
@@ -288,7 +362,6 @@ hr.sep{
 .faq-item p{
     padding:0 18px 16px;
     color:var(--muted);
-    line-height:1.9;
 }
 
 .buttons{
@@ -302,39 +375,45 @@ hr.sep{
     align-items:center;
     justify-content:center;
     gap:8px;
+    min-height:52px;
     text-decoration:none;
     color:#fff;
     background:var(--call);
-    padding:15px;
+    padding:13px 15px;
     border-radius:12px;
     text-align:center;
     font-size:18px;
     font-weight:700;
     border:0;
     cursor:pointer;
-    transition:.25s;
+    transition:transform .2s, box-shadow .2s, background .2s;
 }
 
-.btn:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+.btn:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.2); }
 .btn:active{ transform:scale(.97); }
 
 .btn.call{ background:var(--call); }
 .btn.call:hover{ background:var(--call-dark); }
-.btn.land{ background:var(--land); }
-.btn.land:hover{ background:var(--land-dark); }
 .btn.wa{ background:var(--wa); }
 .btn.wa:hover{ background:var(--wa-dark); }
 .btn.map{ background:var(--map); }
 .btn.map:hover{ background:var(--map-dark); }
 .btn.book{
-    background:linear-gradient(135deg,#1faa59,#12873f);
+    background:var(--wa);
     font-size:20px;
-    padding:17px;
+    min-height:58px;
+    margin-bottom:22px;
 }
 .btn.share{
     background:transparent;
     color:var(--primary);
     border:2px solid var(--primary-2);
+}
+.btn.share:hover{ background:var(--bg); box-shadow:none; }
+.btn.load-map{
+    background:var(--call);
+    min-height:48px;
+    font-size:17px;
 }
 
 .qr-box{
@@ -345,7 +424,7 @@ hr.sep{
 .qr-box p{
     color:var(--muted);
     margin-bottom:12px;
-    font-size:14px;
+    font-size:15px;
 }
 
 #qr{
@@ -360,7 +439,7 @@ hr.sep{
     text-align:center;
     padding:20px;
     color:var(--muted);
-    font-size:14px;
+    font-size:15px;
 }
 
 .sticky-bar{
@@ -373,22 +452,22 @@ hr.sep{
     gap:10px;
     padding:10px 14px calc(10px + env(safe-area-inset-bottom));
     background:var(--card);
-    box-shadow:0 -6px 24px rgba(0,0,0,.18);
+    box-shadow:0 -6px 24px rgba(0,0,0,.2);
     z-index:50;
 }
 
-.sticky-bar .btn{ padding:13px; font-size:17px; }
+.sticky-bar .btn{ min-height:52px; font-size:17px; }
 
 .toast{
     position:fixed;
-    bottom:90px;
+    bottom:92px;
     left:50%;
     transform:translateX(-50%) translateY(20px);
     background:#1f2d3d;
     color:#fff;
     padding:10px 20px;
     border-radius:999px;
-    font-size:15px;
+    font-size:16px;
     opacity:0;
     pointer-events:none;
     transition:.3s;
@@ -397,27 +476,59 @@ hr.sep{
 
 .toast.show{ opacity:1; transform:translateX(-50%); }
 
+.sr-only{
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    white-space:nowrap;
+}
+
 @media(max-width:600px){
     body{ padding:0 0 100px; }
     .card{ border-radius:0 0 25px 25px; }
-    .content{ padding:22px 18px; }
+    .content{ padding:22px 16px; }
     h1{ font-size:26px; }
     .specialty{ font-size:18px; }
 }
 
 @media (prefers-reduced-motion: reduce){
-    *{ animation:none !important; transition:none !important; }
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M11 2v2M5 2v2M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+        <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+        <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    </defs>
+</svg>
 
-    <div class="header">
+<main class="card">
 
-        <div class="doctor-icon">🩺</div>
+    <header class="header">
+
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تبديل الوضع الليلي">
+            <svg class="icon" id="theme-icon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+
+        <div class="doctor-icon" aria-hidden="true">
+            <svg class="icon"><use href="#i-stethoscope"/></svg>
+        </div>
 
         <h1>د. ناصر عبد المعطي النادي البلتاجي</h1>
 
@@ -431,62 +542,108 @@ hr.sep{
             رقم القيد المهني: 106104
         </div>
 
-        <div class="status" id="status">
-            <span class="dot"></span>
+        <div class="status" id="status" role="status">
+            <span class="dot" aria-hidden="true"></span>
             <span id="status-text">جاري التحقق من المواعيد...</span>
         </div>
 
-    </div>
+    </header>
 
     <div class="content">
 
-        <div class="top-actions">
-            <a class="btn book"
-               style="grid-column:1 / -1;"
-               href="https://api.whatsapp.com/send?phone=201270677710&text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81"
-               target="_blank" rel="noopener">
-                📅 احجز الآن عبر واتساب
-            </a>
+        <a class="btn book"
+           href="https://api.whatsapp.com/send?phone=201270677710&text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81"
+           target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+            احجز الآن عبر واتساب
+        </a>
+
+        <section class="info-box">
+            <h2 class="info-title">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+                العنوان
+            </h2>
+            المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة
+        </section>
+
+        <div class="map-wrap" id="map-wrap">
+            <div class="map-placeholder" id="map-placeholder">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+                <span>الخريطة بتتحمّل عند الضغط لتوفير الباقة</span>
+                <button class="btn load-map" id="load-map" type="button">عرض الخريطة هنا</button>
+            </div>
         </div>
 
-        <div class="info-box">
-            <div class="info-title">👨‍⚕️ نبذة عن الدكتور</div>
+        <section class="info-box">
+            <h2 class="info-title">
+                <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>
+                مواعيد العمل
+            </h2>
+            يومياً من 5:30 مساءً إلى 10:30 مساءً ما عدا الجمعة إجازة
+        </section>
+
+        <section class="info-box">
+            <h2 class="info-title">
+                <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                رقم الهاتف وواتساب
+            </h2>
+            <a class="num-btn" href="tel:+201270677710">
+                <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                01270677710
+            </a>
+        </section>
+
+        <section class="info-box">
+            <h2 class="info-title">
+                <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                الهاتف الأرضي
+            </h2>
+            <a class="num-btn" href="tel:0402219799">
+                <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                0402219799
+            </a>
+        </section>
+
+        <h2 class="section-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-help"/></svg>
+            أسئلة شائعة
+        </h2>
+
+        <details class="faq-item">
+            <summary>كيف أحجز كشف؟</summary>
+            <p>تقدر تحجز من زرار "احجز الآن" على واتساب، أو بالاتصال على 01270677710 أو الأرضي 0402219799.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>إيه مواعيد العيادة؟</summary>
+            <p>يومياً من 5:30 مساءً إلى 10:30 مساءً، ويوم الجمعة إجازة.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>فين العيادة؟</summary>
+            <p>المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة. تقدر تفتح الموقع على الخريطة من الزرار تحت.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>أجيب إيه معايا في الكشف؟</summary>
+            <p>يُفضّل إحضار أي تحاليل أو أشعة أو تقارير طبية سابقة، وقائمة بالأدوية اللي بتاخدها حالياً.</p>
+        </details>
+
+        <h2 class="section-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+            نبذة عن الدكتور
+        </h2>
+
+        <section class="info-box">
             د. ناصر عبد المعطي النادي البلتاجي، استشاري الأمراض الباطنة والسكر والكبد،
             وعضو الجمعية الكندية للسكر.
-        </div>
+        </section>
 
-        <div class="info-box">
-            <div class="info-title">📍 العنوان</div>
-            المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة
-        </div>
-
-        <div class="map-wrap">
-            <iframe
-                title="موقع العيادة على الخريطة"
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=%D9%85%D8%B9%D9%85%D9%84%20%D9%86%D8%A8%D8%B6%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D9%84%D8%A9%20%D8%A7%D9%84%D9%83%D8%A8%D8%B1%D9%89%20%D8%A3%D8%A8%D9%88%20%D8%B4%D8%A7%D9%87%D9%8A%D9%86&output=embed">
-            </iframe>
-        </div>
-
-        <div class="info-box">
-            <div class="info-title">🕒 مواعيد العمل</div>
-            يومياً من 5:30 مساءً إلى 10:30 مساءً ما عدا الجمعة إجازة
-        </div>
-
-        <div class="info-box">
-            <div class="info-title">📞 رقم الهاتف وواتساب</div>
-            <a class="num" href="tel:+201270677710">01270677710</a>
-        </div>
-
-        <div class="info-box">
-            <div class="info-title">☎️ الهاتف الأرضي</div>
-            <a class="num" href="tel:0402219799">0402219799</a>
-        </div>
-
-        <div class="info-box">
-            <div class="info-title">🏥 بيانات الاعتماد المهني</div>
+        <section class="info-box">
+            <h2 class="info-title">
+                <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+                بيانات الاعتماد المهني
+            </h2>
 
             <div class="row">
                 <span>رقم القيد</span>
@@ -509,54 +666,20 @@ hr.sep{
                 <span>تاريخ الترخيص</span>
                 <strong>02/03/1993</strong>
             </div>
-        </div>
-
-        <div class="section-title">❓ أسئلة شائعة</div>
-
-        <details class="faq-item">
-            <summary>كيف أحجز كشف؟</summary>
-            <p>تقدر تحجز من زرار "احجز الآن" على واتساب، أو بالاتصال على 01270677710 أو الأرضي 0402219799.</p>
-        </details>
-
-        <details class="faq-item">
-            <summary>إيه مواعيد العيادة؟</summary>
-            <p>يومياً من 5:30 مساءً إلى 10:30 مساءً، ويوم الجمعة إجازة.</p>
-        </details>
-
-        <details class="faq-item">
-            <summary>فين العيادة؟</summary>
-            <p>المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة. تقدر تفتح الموقع على الخريطة من الزرار تحت.</p>
-        </details>
-
-        <details class="faq-item">
-            <summary>أجيب إيه معايا في الكشف؟</summary>
-            <p>يُفضّل إحضار أي تحاليل أو أشعة أو تقارير طبية سابقة، وقائمة بالأدوية اللي بتاخدها حالياً.</p>
-        </details>
+        </section>
 
         <div class="buttons">
-
-            <a class="btn call" href="tel:+201270677710">
-                📞 اتصال مباشر
-            </a>
-
-            <a class="btn land" href="tel:0402219799">
-                ☎️ اتصال بالأرضي
-            </a>
-
-            <a class="btn wa"
-               href="https://api.whatsapp.com/send?phone=201270677710"
-               target="_blank" rel="noopener">
-                💬 مراسلة واتساب
-            </a>
 
             <a class="btn map"
                href="https://maps.app.goo.gl/91TsXDufhNKSfDA56?g_st=ic"
                target="_blank" rel="noopener">
-                📍 فتح الموقع على الخريطة
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+                فتح الموقع على الخريطة
             </a>
 
             <button class="btn share" id="share-btn" type="button">
-                🔗 مشاركة الصفحة
+                <svg class="icon" aria-hidden="true"><use href="#i-share"/></svg>
+                مشاركة الصفحة
             </button>
 
         </div>
@@ -568,25 +691,67 @@ hr.sep{
 
     </div>
 
-    <div class="footer">
+    <footer class="footer">
         نتمنى لكم دوام الصحة والعافية
-    </div>
+    </footer>
 
-</div>
+</main>
 
-<div class="sticky-bar">
-    <a class="btn call" href="tel:+201270677710">📞 اتصال</a>
+<nav class="sticky-bar" aria-label="تواصل سريع">
+    <a class="btn call" href="tel:+201270677710">
+        <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+        اتصال
+    </a>
     <a class="btn wa"
        href="https://api.whatsapp.com/send?phone=201270677710&text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81"
-       target="_blank" rel="noopener">💬 احجز واتساب</a>
-</div>
+       target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+        احجز واتساب
+    </a>
+</nav>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 (function(){
-    // شارة "مفتوح الآن / مغلق" بتوقيت القاهرة
+    var root = document.documentElement;
+
+    // ===== الوضع الليلي اليدوي =====
+    var themeBtn = document.getElementById('theme-toggle');
+    var themeIcon = document.getElementById('theme-icon');
+    var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function currentTheme(){
+        var t = root.getAttribute('data-theme');
+        if(t) return t;
+        return (mq && mq.matches) ? 'dark' : 'light';
+    }
+
+    function paintThemeIcon(){
+        var dark = currentTheme() === 'dark';
+        themeIcon.innerHTML = '<use href="#' + (dark ? 'i-sun' : 'i-moon') + '"/>';
+        themeBtn.setAttribute('aria-label', dark ? 'التبديل للوضع الفاتح' : 'التبديل للوضع الليلي');
+    }
+
+    try{
+        var saved = localStorage.getItem('theme');
+        if(saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+    }catch(e){}
+    paintThemeIcon();
+
+    themeBtn.addEventListener('click', function(){
+        var next = currentTheme() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try{ localStorage.setItem('theme', next); }catch(e){}
+        paintThemeIcon();
+    });
+
+    if(mq && mq.addEventListener){
+        mq.addEventListener('change', paintThemeIcon);
+    }
+
+    // ===== شارة مفتوح / مغلق بتوقيت القاهرة =====
     function updateStatus(){
         var box = document.getElementById('status');
         var text = document.getElementById('status-text');
@@ -600,15 +765,12 @@ hr.sep{
             }).formatToParts(new Date());
             var map = {};
             parts.forEach(function(p){ map[p.type] = p.value; });
-            var day = map.weekday;
             var minutes = (parseInt(map.hour, 10) % 24) * 60 + parseInt(map.minute, 10);
-            var openAt = 17 * 60 + 30;
-            var closeAt = 22 * 60 + 30;
 
-            if(day === 'Fri'){
+            if(map.weekday === 'Fri'){
                 box.className = 'status closed';
                 text.textContent = 'مغلق اليوم - الجمعة إجازة';
-            }else if(minutes >= openAt && minutes < closeAt){
+            }else if(minutes >= 17 * 60 + 30 && minutes < 22 * 60 + 30){
                 box.className = 'status open';
                 text.textContent = 'مفتوح الآن حتى 10:30 مساءً';
             }else{
@@ -622,14 +784,52 @@ hr.sep{
     updateStatus();
     setInterval(updateStatus, 60000);
 
-    // مشاركة الصفحة
+    // ===== رسالة صغيرة =====
     var toast = document.getElementById('toast');
+    var toastTimer;
     function showToast(msg){
         toast.textContent = msg;
         toast.classList.add('show');
-        setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2400);
     }
 
+    function copyText(value, okMsg){
+        if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(value).then(function(){
+                showToast(okMsg);
+            }).catch(function(){ showToast(value); });
+        }else{
+            showToast(value);
+        }
+    }
+
+    // ===== على الكمبيوتر: الاتصال ينسخ الرقم بدل ما يفتح برنامج =====
+    var desktop = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if(desktop){
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+            a.addEventListener('click', function(e){
+                e.preventDefault();
+                var number = a.getAttribute('href').replace('tel:', '').replace('+20', '0');
+                copyText(number, 'تم نسخ الرقم: ' + number);
+            });
+        });
+    }
+
+    // ===== تحميل الخريطة عند الضغط =====
+    document.getElementById('load-map').addEventListener('click', function(){
+        var iframe = document.createElement('iframe');
+        iframe.title = 'موقع العيادة على الخريطة';
+        iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+        iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        iframe.src = 'https://www.google.com/maps?q=' +
+            encodeURIComponent('معمل نبضة المحلة الكبرى أبو شاهين') + '&output=embed';
+        var wrap = document.getElementById('map-wrap');
+        wrap.innerHTML = '';
+        wrap.appendChild(iframe);
+    });
+
+    // ===== مشاركة الصفحة =====
     document.getElementById('share-btn').addEventListener('click', function(){
         var data = {
             title: document.title,
@@ -638,16 +838,13 @@ hr.sep{
         };
         if(navigator.share){
             navigator.share(data).catch(function(){});
-        }else if(navigator.clipboard){
-            navigator.clipboard.writeText(location.href).then(function(){
-                showToast('تم نسخ رابط الصفحة');
-            }).catch(function(){ showToast(location.href); });
         }else{
-            showToast(location.href);
+            copyText(location.href, 'تم نسخ رابط الصفحة');
         }
     });
 
-    // QR code
+    // ===== QR code =====
+    var qrBox = document.querySelector('.qr-box');
     try{
         if(window.QRCode){
             new QRCode(document.getElementById('qr'), {
@@ -657,10 +854,10 @@ hr.sep{
                 correctLevel: QRCode.CorrectLevel.M
             });
         }else{
-            document.querySelector('.qr-box').style.display = 'none';
+            qrBox.style.display = 'none';
         }
     }catch(e){
-        document.querySelector('.qr-box').style.display = 'none';
+        qrBox.style.display = 'none';
     }
 })();
 </script>
