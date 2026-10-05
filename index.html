@@ -4,10 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>د. ناصر عبد المعطي النادي البلتاجي</title>
+<meta name="description" content="د. ناصر عبد المعطي النادي البلتاجي - استشاري الباطنة والسكر والكبد - المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد بجوار معمل نبضة. للحجز: 01270677710">
+<meta name="theme-color" content="#0b4f8c">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:title" content="د. ناصر عبد المعطي النادي البلتاجي">
+<meta property="og:description" content="استشاري الباطنة والسكر والكبد - المحلة الكبرى - أبو شاهين. للحجز: 01270677710">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b4f8c'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E%F0%9F%A9%BA%3C/text%3E%3C/svg%3E">
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "د. ناصر عبد المعطي النادي البلتاجي",
+  "medicalSpecialty": ["Internal medicine", "Diabetology", "Hepatology"],
+  "telephone": ["+201270677710", "+20402219799"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "المحلة الكبرى",
+    "streetAddress": "أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة",
+    "addressCountry": "EG"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+    "opens": "17:30",
+    "closes": "22:30"
+  }]
+}
+</script>
+
 <style>
+:root{
+    --primary:#0b4f8c;
+    --primary-2:#0e74c9;
+    --bg:#f6f9fc;
+    --card:#ffffff;
+    --text:#1f2d3d;
+    --muted:#667085;
+    --line:#dbe4ee;
+    --wa:#1faa59;
+    --wa-dark:#168a47;
+    --call:#0e74c9;
+    --call-dark:#0b4f8c;
+    --land:#6c5ce7;
+    --land-dark:#5444c9;
+    --map:#e8553d;
+    --map-dark:#c7432d;
+    --shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg:#16212e;
+        --card:#1c2937;
+        --text:#e6edf5;
+        --muted:#9fb0c3;
+        --line:#2e3f52;
+        --primary:#7cc0ff;
+        --shadow:0 20px 50px rgba(0,0,0,.5);
+    }
+    body{ background:linear-gradient(135deg,#07243f,#0b3f6e) !important; }
+    .header{ background:linear-gradient(135deg,#0b4f8c,#0e74c9) !important; }
+    .info-box, .faq-item, .map-wrap{ background:var(--bg) !important; }
+    .info-title{ color:var(--primary) !important; }
+}
+
 *{
     margin:0;
     padding:0;
@@ -15,34 +81,43 @@
     font-family:'Cairo',sans-serif;
 }
 
+html{ scroll-behavior:smooth; }
+
 body{
     background:linear-gradient(135deg,#0b4f8c,#0e74c9);
     min-height:100vh;
     display:flex;
     justify-content:center;
-    align-items:center;
-    padding:20px;
+    align-items:flex-start;
+    padding:20px 20px 110px;
+    color:var(--text);
 }
 
 .card{
-    background:#fff;
+    background:var(--card);
     width:100%;
     max-width:700px;
     border-radius:25px;
     overflow:hidden;
-    box-shadow:0 20px 50px rgba(0,0,0,.2);
+    box-shadow:var(--shadow);
+    animation:rise .6s ease both;
+}
+
+@keyframes rise{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:none; }
 }
 
 .header{
     background:linear-gradient(135deg,#0b4f8c,#0e74c9);
     color:#fff;
     text-align:center;
-    padding:40px 25px;
+    padding:40px 25px 34px;
 }
 
 .doctor-icon{
-    width:100px;
-    height:100px;
+    width:104px;
+    height:104px;
     margin:auto;
     border-radius:50%;
     background:#fff;
@@ -50,8 +125,9 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:50px;
+    font-size:52px;
     margin-bottom:20px;
+    box-shadow:0 0 0 6px rgba(255,255,255,.25), 0 10px 25px rgba(0,0,0,.25);
 }
 
 h1{
@@ -71,22 +147,148 @@ h1{
     line-height:1.8;
 }
 
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:18px;
+    padding:7px 18px;
+    border-radius:999px;
+    background:rgba(255,255,255,.18);
+    font-weight:700;
+    font-size:15px;
+}
+
+.status .dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#9aa5b1;
+}
+
+.status.open .dot{
+    background:#35e07a;
+    box-shadow:0 0 0 0 rgba(53,224,122,.7);
+    animation:pulse 1.8s infinite;
+}
+
+.status.closed .dot{ background:#ff6b6b; }
+
+@keyframes pulse{
+    70%{ box-shadow:0 0 0 9px rgba(53,224,122,0); }
+    100%{ box-shadow:0 0 0 0 rgba(53,224,122,0); }
+}
+
 .content{
     padding:30px;
 }
 
+.top-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:25px;
+}
+
 .info-box{
-    background:#f6f9fc;
+    background:var(--bg);
     border-right:5px solid #0e74c9;
     padding:18px;
     border-radius:12px;
     margin-bottom:15px;
+    line-height:1.9;
+    transition:transform .25s, box-shadow .25s;
+}
+
+.info-box:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(14,116,201,.12);
 }
 
 .info-title{
     color:#0b4f8c;
     font-weight:700;
     margin-bottom:8px;
+}
+
+.info-box a.num{
+    color:inherit;
+    font-weight:700;
+    font-size:19px;
+    text-decoration:none;
+    direction:ltr;
+    unicode-bidi:embed;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.row:last-child{ margin-bottom:0; }
+
+hr.sep{
+    margin:12px 0;
+    border:none;
+    border-top:1px solid var(--line);
+}
+
+.map-wrap{
+    background:var(--bg);
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:15px;
+}
+
+.map-wrap iframe{
+    width:100%;
+    height:260px;
+    border:0;
+    border-radius:10px;
+    display:block;
+}
+
+.section-title{
+    color:var(--primary);
+    font-weight:800;
+    font-size:20px;
+    margin:28px 0 14px;
+}
+
+.faq-item{
+    background:var(--bg);
+    border-radius:12px;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+.faq-item summary{
+    cursor:pointer;
+    padding:14px 18px;
+    font-weight:700;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.faq-item summary::-webkit-details-marker{ display:none; }
+
+.faq-item summary::after{
+    content:"+";
+    font-size:22px;
+    color:var(--primary-2);
+    transition:transform .25s;
+}
+
+.faq-item[open] summary::after{ transform:rotate(45deg); }
+
+.faq-item p{
+    padding:0 18px 16px;
+    color:var(--muted);
+    line-height:1.9;
 }
 
 .buttons{
@@ -96,37 +298,115 @@ h1{
 }
 
 .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
     text-decoration:none;
     color:#fff;
-    background:#0e74c9;
+    background:var(--call);
     padding:15px;
     border-radius:12px;
     text-align:center;
     font-size:18px;
     font-weight:700;
-    transition:.3s;
+    border:0;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.btn:hover{
-    background:#0b4f8c;
-    transform:translateY(-2px);
+.btn:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+.btn:active{ transform:scale(.97); }
+
+.btn.call{ background:var(--call); }
+.btn.call:hover{ background:var(--call-dark); }
+.btn.land{ background:var(--land); }
+.btn.land:hover{ background:var(--land-dark); }
+.btn.wa{ background:var(--wa); }
+.btn.wa:hover{ background:var(--wa-dark); }
+.btn.map{ background:var(--map); }
+.btn.map:hover{ background:var(--map-dark); }
+.btn.book{
+    background:linear-gradient(135deg,#1faa59,#12873f);
+    font-size:20px;
+    padding:17px;
+}
+.btn.share{
+    background:transparent;
+    color:var(--primary);
+    border:2px solid var(--primary-2);
+}
+
+.qr-box{
+    text-align:center;
+    margin-top:28px;
+}
+
+.qr-box p{
+    color:var(--muted);
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+#qr{
+    display:inline-block;
+    padding:12px;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 4px 14px rgba(0,0,0,.12);
 }
 
 .footer{
     text-align:center;
     padding:20px;
-    color:#666;
+    color:var(--muted);
     font-size:14px;
 }
 
-@media(max-width:600px){
-    h1{
-        font-size:26px;
-    }
+.sticky-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:var(--card);
+    box-shadow:0 -6px 24px rgba(0,0,0,.18);
+    z-index:50;
+}
 
-    .specialty{
-        font-size:18px;
-    }
+.sticky-bar .btn{ padding:13px; font-size:17px; }
+
+.toast{
+    position:fixed;
+    bottom:90px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:#1f2d3d;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:999px;
+    font-size:15px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:60;
+}
+
+.toast.show{ opacity:1; transform:translateX(-50%); }
+
+@media(max-width:600px){
+    body{ padding:0 0 100px; }
+    .card{ border-radius:0 0 25px 25px; }
+    .content{ padding:22px 18px; }
+    h1{ font-size:26px; }
+    .specialty{ font-size:18px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
 }
 </style>
 </head>
@@ -151,13 +431,42 @@ h1{
             رقم القيد المهني: 106104
         </div>
 
+        <div class="status" id="status">
+            <span class="dot"></span>
+            <span id="status-text">جاري التحقق من المواعيد...</span>
+        </div>
+
     </div>
 
     <div class="content">
 
+        <div class="top-actions">
+            <a class="btn book"
+               style="grid-column:1 / -1;"
+               href="https://api.whatsapp.com/send?phone=201270677710&text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81"
+               target="_blank" rel="noopener">
+                📅 احجز الآن عبر واتساب
+            </a>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">👨‍⚕️ نبذة عن الدكتور</div>
+            د. ناصر عبد المعطي النادي البلتاجي، استشاري الأمراض الباطنة والسكر والكبد،
+            وعضو الجمعية الكندية للسكر.
+        </div>
+
         <div class="info-box">
             <div class="info-title">📍 العنوان</div>
             المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة
+        </div>
+
+        <div class="map-wrap">
+            <iframe
+                title="موقع العيادة على الخريطة"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=%D9%85%D8%B9%D9%85%D9%84%20%D9%86%D8%A8%D8%B6%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D9%84%D8%A9%20%D8%A7%D9%84%D9%83%D8%A8%D8%B1%D9%89%20%D8%A3%D8%A8%D9%88%20%D8%B4%D8%A7%D9%87%D9%8A%D9%86&output=embed">
+            </iframe>
         </div>
 
         <div class="info-box">
@@ -167,62 +476,93 @@ h1{
 
         <div class="info-box">
             <div class="info-title">📞 رقم الهاتف وواتساب</div>
-            01270677710
+            <a class="num" href="tel:+201270677710">01270677710</a>
         </div>
 
         <div class="info-box">
             <div class="info-title">☎️ الهاتف الأرضي</div>
-            0402219799
+            <a class="num" href="tel:0402219799">0402219799</a>
         </div>
 
         <div class="info-box">
             <div class="info-title">🏥 بيانات الاعتماد المهني</div>
 
-            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <div class="row">
                 <span>رقم القيد</span>
                 <strong>106104</strong>
             </div>
 
-            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+            <div class="row">
                 <span>تاريخ القيد</span>
                 <strong>02/03/1993</strong>
             </div>
 
-            <hr style="margin:12px 0;border:none;border-top:1px solid #dbe4ee;">
+            <hr class="sep">
 
-            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <div class="row">
                 <span>رقم الترخيص</span>
                 <strong>110495</strong>
             </div>
 
-            <div style="display:flex;justify-content:space-between;">
+            <div class="row">
                 <span>تاريخ الترخيص</span>
                 <strong>02/03/1993</strong>
             </div>
         </div>
 
+        <div class="section-title">❓ أسئلة شائعة</div>
+
+        <details class="faq-item">
+            <summary>كيف أحجز كشف؟</summary>
+            <p>تقدر تحجز من زرار "احجز الآن" على واتساب، أو بالاتصال على 01270677710 أو الأرضي 0402219799.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>إيه مواعيد العيادة؟</summary>
+            <p>يومياً من 5:30 مساءً إلى 10:30 مساءً، ويوم الجمعة إجازة.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>فين العيادة؟</summary>
+            <p>المحلة الكبرى - أبو شاهين - شارع مستشفى الرواد - بجوار معمل نبضة. تقدر تفتح الموقع على الخريطة من الزرار تحت.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>أجيب إيه معايا في الكشف؟</summary>
+            <p>يُفضّل إحضار أي تحاليل أو أشعة أو تقارير طبية سابقة، وقائمة بالأدوية اللي بتاخدها حالياً.</p>
+        </details>
+
         <div class="buttons">
 
-            <a class="btn" href="tel:+201270677710">
+            <a class="btn call" href="tel:+201270677710">
                 📞 اتصال مباشر
             </a>
 
-            <a class="btn" href="tel:0402219799">
+            <a class="btn land" href="tel:0402219799">
                 ☎️ اتصال بالأرضي
             </a>
 
-            <a class="btn"
+            <a class="btn wa"
                href="https://api.whatsapp.com/send?phone=201270677710"
-               target="_blank">
+               target="_blank" rel="noopener">
                 💬 مراسلة واتساب
             </a>
 
-            <a class="btn"
+            <a class="btn map"
                href="https://maps.app.goo.gl/91TsXDufhNKSfDA56?g_st=ic"
-               target="_blank">
+               target="_blank" rel="noopener">
                 📍 فتح الموقع على الخريطة
             </a>
 
+            <button class="btn share" id="share-btn" type="button">
+                🔗 مشاركة الصفحة
+            </button>
+
+        </div>
+
+        <div class="qr-box">
+            <p>امسح الكود لفتح الصفحة</p>
+            <div id="qr"></div>
         </div>
 
     </div>
@@ -232,6 +572,97 @@ h1{
     </div>
 
 </div>
+
+<div class="sticky-bar">
+    <a class="btn call" href="tel:+201270677710">📞 اتصال</a>
+    <a class="btn wa"
+       href="https://api.whatsapp.com/send?phone=201270677710&text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81"
+       target="_blank" rel="noopener">💬 احجز واتساب</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+    // شارة "مفتوح الآن / مغلق" بتوقيت القاهرة
+    function updateStatus(){
+        var box = document.getElementById('status');
+        var text = document.getElementById('status-text');
+        try{
+            var parts = new Intl.DateTimeFormat('en-US', {
+                timeZone:'Africa/Cairo',
+                weekday:'short',
+                hour:'2-digit',
+                minute:'2-digit',
+                hour12:false
+            }).formatToParts(new Date());
+            var map = {};
+            parts.forEach(function(p){ map[p.type] = p.value; });
+            var day = map.weekday;
+            var minutes = (parseInt(map.hour, 10) % 24) * 60 + parseInt(map.minute, 10);
+            var openAt = 17 * 60 + 30;
+            var closeAt = 22 * 60 + 30;
+
+            if(day === 'Fri'){
+                box.className = 'status closed';
+                text.textContent = 'مغلق اليوم - الجمعة إجازة';
+            }else if(minutes >= openAt && minutes < closeAt){
+                box.className = 'status open';
+                text.textContent = 'مفتوح الآن حتى 10:30 مساءً';
+            }else{
+                box.className = 'status closed';
+                text.textContent = 'مغلق الآن - نفتح 5:30 مساءً';
+            }
+        }catch(e){
+            box.style.display = 'none';
+        }
+    }
+    updateStatus();
+    setInterval(updateStatus, 60000);
+
+    // مشاركة الصفحة
+    var toast = document.getElementById('toast');
+    function showToast(msg){
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+    }
+
+    document.getElementById('share-btn').addEventListener('click', function(){
+        var data = {
+            title: document.title,
+            text: 'د. ناصر عبد المعطي النادي البلتاجي - استشاري الباطنة والسكر والكبد',
+            url: location.href
+        };
+        if(navigator.share){
+            navigator.share(data).catch(function(){});
+        }else if(navigator.clipboard){
+            navigator.clipboard.writeText(location.href).then(function(){
+                showToast('تم نسخ رابط الصفحة');
+            }).catch(function(){ showToast(location.href); });
+        }else{
+            showToast(location.href);
+        }
+    });
+
+    // QR code
+    try{
+        if(window.QRCode){
+            new QRCode(document.getElementById('qr'), {
+                text: location.href.split('#')[0],
+                width: 160,
+                height: 160,
+                correctLevel: QRCode.CorrectLevel.M
+            });
+        }else{
+            document.querySelector('.qr-box').style.display = 'none';
+        }
+    }catch(e){
+        document.querySelector('.qr-box').style.display = 'none';
+    }
+})();
+</script>
 
 </body>
 </html>
